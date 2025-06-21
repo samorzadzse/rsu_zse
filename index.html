@@ -164,6 +164,46 @@
       }
     }
   </style>
+
+<style>
+.info {
+  background: rgba(255,255,255,0.1);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+  font-size: 1rem; /* zmienione z 1.1rem */
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  text-align: justify;
+}
+
+/* Poprawiona pozycja kropek na osi czasu */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 50%; /* wyśrodkowanie względem elementu */
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 4px solid #f44336;
+  border-radius: 50%;
+  left: 50%;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(244,67,54,0.7);
+}
+
+/* Kolorystyka tekstów */
+.timeline-item .label {
+  color: #f44336;
+}
+.timeline-item h2 {
+  color: #ffffff;
+}
+.timeline-item p {
+  color: #e0e0e0;
+}
+</style>
 </head>
 <body>
 

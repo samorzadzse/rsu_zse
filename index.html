@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samorząd Uczniowski</title>
+  <style>
+    /* Podstawowy reset i font */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #001f4d, #0d47a1);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header, footer {
+      background: #0d47a1;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+
+    header img.logo {
+      height: 60px;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 2rem auto 3rem;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    .info {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      text-align: justify;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 0 auto;
+      max-width: 960px;
+      padding: 2rem 0;
+    }
+
+    /* Oś czasu */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 6px;
+      background: linear-gradient(to bottom, #f44336, #2196f3, #001f4d);
+      transform: translateX(-50%);
+      border-radius: 3px;
+      z-index: 0;
+    }
+
+    /* Pojedynczy event */
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 1.5rem 2rem;
+      z-index: 1;
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border: 4px solid #f44336;
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 0 10px rgba(244,67,54,0.7);
+    }
+
+    .timeline-item .label {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f44336;
+      margin-bottom: 0.4rem;
+      letter-spacing: 1px;
+    }
+
+    .timeline-item h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      color: #e3e3e3;
+    }
+
+    .timeline-item p {
+      text-align: justify;
+      line-height: 1.5;
+      font-size: 1rem;
+      color: #d3d3d3;
+    }
+
+    .timeline-item img {
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsywność */
+    @media screen and (max-width: 768px) {
+      .timeline::before {
+        left: 30px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+        text-align: left !important;
+        margin-bottom: 3rem;
+      }
+
+      .timeline-item.left, .timeline-item.right {
+        left: 0;
+      }
+
+      .timeline-item::before {
+        left: 30px;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="fot.png" alt="Logo Samorządu" class="logo" />
+</header>
+
+<main>
+  <section class="info">
+    <p>Był to wyjątkowo udany rok dla naszego samorządu. Nowi radni wnieśli świeżość i energię, dzięki czemu niemal co miesiąc organizowaliśmy wydarzenia, które urozmaicały szkolną codzienność. Za kulisami działo się jeszcze więcej – pracowaliśmy nad zmianami w regulaminie, dbaliśmy o Wasze prawa i wspieraliśmy uczniowskie inicjatywy. Możemy być dumni, że aż dwóch naszych radnych pełniło ważne funkcje: jeden jako szkolny Rzecznik Praw Ucznia, a drugi jako przedstawiciel w zespole parlamentarnym. To był rok pełen pracy, pomysłów i sukcesów – dziękujemy, że byliście z nami!</p>
+  </section>
+
+  <section class="timeline">
+
+    <article class="timeline-item left">
+      <div class="label">LISTOPAD</div>
+      <h2>Zaprzysiężenie</h2>
+      <p>24 radnych, w tym 17 nowo wybranych, złożyło ślubowanie przed Panią Dyrektor. Po jej krótkim przemówieniu odbyła się uroczysta, inauguracyjna sesja samorządu, podczas której wybraliśmy nowe władze i omówiliśmy kluczowe sprawy dotyczące szkoły.</p>
+      <img src="1.jpg" alt="Zaprzysiężenie" />
+    </article>
+
+    <article class="timeline-item right">
+      <div class="label">GRUDZIEŃ</div>
+      <h2>Mikołajki</h2>
+      <p>W mikołajkowym orszaku odwiedziliśmy SP nr 69 oraz Przedszkole nr 33, niosąc radość najmłodszym. O 11:30 rozpoczęliśmy świąteczne obchody w naszej szkole, a godzinę później wręczyliśmy nagrody w turnieju Rummikuba. Mikołaj odwiedził klasy i nagrodził najbardziej kreatywnych – wszystko dzięki wsparciu Rady Rodziców. To był magiczny dzień!</p>
+      <img src="miko.jpg" alt="Mikołajki" />
+    </article>
+
+    <article class="timeline-item left">
+      <div class="label">STYCZEŃ</div>
+      <h2>Szkolenie z Panią Rzecznik</h2>
+      <p>Gościliśmy Panią Katarzynę Gębę – Rzecznika Praw Ucznia w Gdańsku. Uczestniczyliśmy w warsztatach, które pozwoliły nam rozwinąć kompetencje i pogłębić wiedzę o roli samorządu w szkole. Spotkanie było niezwykle inspirujące!</p>
+      <img src="szkol.jpg" alt="Szkolenie z Panią Rzecznik" />
+    </article>
+
+    <article class="timeline-item right">
+      <div class="label">STYCZEŃ</div>
+      <h2>Nowy przewodniczący</h2>
+      <p>Podczas 3. sesji Rady Samorządu Uczniowskiego podziękowaliśmy Sarze Zaskórskiej z klasy 5P za jej zaangażowanie i lata pracy jako Przewodnicząca. Nowym przewodniczącym został Bartosz Zabrocki z klasy 3F.</p>
+      <img src="zmiana-we-wladzach-rsu-589946.jpgg" alt="Nowy przewodniczący" />
+      <img src="zmiana-we-wladzach-rsu-589947.jpgg" alt="Nowy przewodniczący" />
+    </article>
+
+    <article class="timeline-item left">
+      <div class="label">LUTY</div>
+      <h2>Kino i dyskoteka</h2>
+      <p>W tym roku walentynki były wyjątkowe! Rano, wspólnie z SDKF-em, zaprosiliśmy Was na seanse filmowe, a wieczorem bawiliśmy się przy hitach lat 90. i 2000. Było romantycznie, filmowo i tanecznie!</p>
+      <img src="walentynki-593028.jpgg" alt="Kino i dyskoteka" />
+    </article>
+
+    <article class="timeline-item right">
+      <div class="label">KWIECIEŃ</div>
+      <h2>Dni Otwarte</h2>
+      <p>Z radością prezentowaliśmy naszą szkołę przyszłym uczniom. Przygotowaliśmy specjalne stanowiska, aby pokazać bogactwo naszej oferty i przyjazną atmosferę. Cieszymy się, że mogliśmy Was poznać i zainspirować do wyboru naszej szkoły.</p>
+      <img src="otwarte.jpg" alt="Dni Otwarte" />
+    </article>
+
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Samorząd Uczniowski – Szkoła Podstawowa nr 59 w Gdańsku</p>
+</footer>
+
+</body>
+</html>

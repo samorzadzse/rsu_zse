@@ -2,23 +2,47 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Slajdy ze zdjęciami</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wspomnienia</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     body {
-      margin: 0;
-      font-family: sans-serif;
-      background: white;
+      background: url('tlo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
     }
 
-    .section {
-      border: 2px solid black;
-      padding: 20px;
+    header, footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(to right, #fff59d, #ef9a9a, #90caf9);
+      color: #fff;
       text-align: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    .section h1, .section h2 {
-      margin: 0;
+    .logo {
+      height: 50px;
+      max-width: 100%;
+    }
+
+    .info2 {
+      max-width: 900px;
+      margin: 1rem auto;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
     }
 
     .slider-wrapper {
@@ -26,149 +50,78 @@
       overflow: hidden;
       height: 500px;
       border: 2px solid black;
-    }
-
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
+      margin: 2rem auto;
+      max-width: 1000px;
     }
 
     .slide {
-      min-width: 100%;
+      position: absolute;
+      width: 100%;
       height: 100%;
       background-size: cover;
       background-position: center;
-      position: relative;
+      animation: fade 15s infinite;
     }
 
-    .overlay {
+    @keyframes fade {
+      0% {opacity: 1;}
+      33% {opacity: 0;}
+      66% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    .slide:nth-child(2) {
+      animation-delay: 5s;
+    }
+    .slide:nth-child(3) {
+      animation-delay: 10s;
+    }
+
+    .caption {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
-      width: 60%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 40px;
-      box-sizing: border-box;
-      clip-path: polygon(0 0, 85% 0, 70% 100%, 0% 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      max-width: 60%;
     }
 
-    .overlay h3 {
-      margin-top: 0;
-      font-size: 1.8rem;
-    }
-
-    .overlay p {
-      font-size: 1.1rem;
-    }
-
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      background: white;
-      border: 2px solid black;
-      padding: 10px;
-      cursor: pointer;
-      user-select: none;
-      z-index: 10;
-    }
-
-    .nav-arrow.left {
-      left: 10px;
-    }
-
-    .nav-arrow.right {
-      right: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .overlay {
-        width: 100%;
-        height: 40%;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 80%);
-        bottom: 0;
-        top: auto;
-      }
-
-      .overlay h3 {
-        font-size: 1.4rem;
-      }
-
-      .overlay p {
+    @media screen and (max-width: 768px) {
+      .caption {
         font-size: 1rem;
+        max-width: 100%;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="fot.png" alt="Logo" class="logo" />
+  </header>
 
-<!-- Logo -->
-<div class="section">
-  <h1>logo</h1>
-</div>
-
-<!-- Podziękowania -->
-<div class="section">
-  <h2>podziękowania</h2>
-  <div style="border-top: 3px dotted black; width: 90%; margin: 10px auto;"></div>
-  <div style="border-top: 3px dotted black; width: 90%; margin: 10px auto;"></div>
-</div>
-
-<!-- Tytuł -->
-<div class="section">
-  <h2>to przeżyliśmy razem...</h2>
-</div>
-
-<!-- Slajdy -->
-<div class="slider-wrapper">
-  <div class="nav-arrow left" onclick="prevSlide()">&#10094;</div>
-  <div class="nav-arrow right" onclick="nextSlide()">&#10095;</div>
-
-  <div class="slides" id="slides">
-    <!-- SLIDE 1 -->
-    <div class="slide" style="background-image: url('1.jpg');">
-      <div class="overlay">
-        <h3>Listopad – Zaprzysiężenie</h3>
-        <p>24 radnych, w tym 17 nowych, złożyło ślubowanie. Inauguracja pełna emocji i planów!</p>
-      </div>
+  <div class="slider-wrapper">
+    <div class="slide" style="background-image: url('slide1.jpg');">
+      <div class="caption">To był wspaniały dzień pełen wspomnień!</div>
     </div>
-
-    <!-- SLIDE 2 -->
-    <div class="slide" style="background-image: url('miko.jpg');">
-      <div class="overlay">
-        <h3>Grudzień – Mikołajki</h3>
-        <p>Odwiedziliśmy szkoły i klasy, rozdawaliśmy słodkości – uśmiechy gwarantowane!</p>
-      </div>
+    <div class="slide" style="background-image: url('slide2.jpg');">
+      <div class="caption">Dziękujemy za wspólny czas!</div>
+    </div>
+    <div class="slide" style="background-image: url('slide3.jpg');">
+      <div class="caption">Czekamy na kolejny rok!</div>
     </div>
   </div>
-</div>
 
-<script>
-  let currentIndex = 0;
-  const slides = document.getElementById('slides');
-  const totalSlides = slides.children.length;
+  <div class="info2">
+    <p><b>Dziękujemy wszystkim za ten rok!</b><br>Jesteście niesamowici!</p>
+  </div>
 
-  function updateSlide() {
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlide();
-  }
-
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateSlide();
-  }
-</script>
-
+  <footer>
+    <p style="color: #fff; font-weight: bold;">&copy; 2025 Samorząd Uczniowski ZSE</p>
+  </footer>
 </body>
 </html>

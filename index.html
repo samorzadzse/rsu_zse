@@ -2,8 +2,8 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wspomnienia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samorząd</title>
   <style>
     * {
       box-sizing: border-box;
@@ -30,6 +30,10 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
+    footer {
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    }
+
     .logo {
       height: 50px;
       max-width: 100%;
@@ -45,13 +49,12 @@
       font-size: 1.1rem;
     }
 
-    .slider-wrapper {
+    /* Slider */
+    .slider {
       position: relative;
       overflow: hidden;
+      max-width: 100%;
       height: 500px;
-      border: 2px solid black;
-      margin: 2rem auto;
-      max-width: 1000px;
     }
 
     .slide {
@@ -60,68 +63,101 @@
       height: 100%;
       background-size: cover;
       background-position: center;
-      animation: fade 15s infinite;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    @keyframes fade {
-      0% {opacity: 1;}
-      33% {opacity: 0;}
-      66% {opacity: 0;}
-      100% {opacity: 1;}
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
     }
 
-    .slide:nth-child(2) {
-      animation-delay: 5s;
-    }
-    .slide:nth-child(3) {
-      animation-delay: 10s;
-    }
-
-    .caption {
+    .overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.75);
-      clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-      padding: 1rem;
-      font-weight: bold;
-      font-size: 1.2rem;
-      max-width: 60%;
+      max-width: 100%;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.7);
+      clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 100%);
+      color: #333;
+    }
+
+    .overlay h2 {
+      margin-bottom: 0.5rem;
+      color: #FF5722;
+    }
+
+    .overlay p {
+      font-size: 1.1rem;
     }
 
     @media screen and (max-width: 768px) {
-      .caption {
+      .slider {
+        height: 300px;
+      }
+
+      .overlay {
+        clip-path: none;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 1rem;
+      }
+
+      .overlay p {
         font-size: 1rem;
-        max-width: 100%;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
       }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="fot.png" alt="Logo" class="logo" />
+    <img src="fot.png" alt="Logo Samorządu" class="logo" />
   </header>
 
-  <div class="slider-wrapper">
-    <div class="slide" style="background-image: url('slide1.jpg');">
-      <div class="caption">To był wspaniały dzień pełen wspomnień!</div>
+  <!-- Slider -->
+  <div class="slider">
+    <div class="slide active" style="background-image: url('slide1.jpg');">
+      <div class="overlay">
+        <h2>Listopad</h2>
+        <p>Zaprzysiężenie nowych radnych – rozpoczęcie kadencji i wybór władz samorządu.</p>
+      </div>
     </div>
     <div class="slide" style="background-image: url('slide2.jpg');">
-      <div class="caption">Dziękujemy za wspólny czas!</div>
+      <div class="overlay">
+        <h2>Grudzień</h2>
+        <p>Mikołajki – świąteczna atmosfera, odwiedziny w szkole i przedszkolu.</p>
+      </div>
     </div>
     <div class="slide" style="background-image: url('slide3.jpg');">
-      <div class="caption">Czekamy na kolejny rok!</div>
+      <div class="overlay">
+        <h2>Styczeń</h2>
+        <p>Szkolenie z Rzecznikiem Praw Ucznia – edukacja i rozwój kompetencji.</p>
+      </div>
     </div>
   </div>
 
   <div class="info2">
-    <p><b>Dziękujemy wszystkim za ten rok!</b><br>Jesteście niesamowici!</p>
+    <p><b>A ty na co jeszcze czekasz? Zgłoś się do samorządu!</b><br>Zapisy już niebawem!</p>
   </div>
 
   <footer>
-    <p style="color: #fff; font-weight: bold;">&copy; 2025 Samorząd Uczniowski ZSE</p>
+    <p style="color: #fff; font-weight: bold;">© 2025 Samorząd Uczniowski ZSE</p>
   </footer>
+
+  <!-- Slider Script -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 4000); // Change slide every 4 seconds
+  </script>
 </body>
 </html>

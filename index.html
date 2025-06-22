@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Samorząd - Slajdy</title>
   <style>
     * {
@@ -41,101 +41,101 @@
 
     .slider {
       position: relative;
-      width: 100%;
-      height: 70vh;
+      max-width: 100%;
       overflow: hidden;
-      margin: 2rem 0;
     }
 
     .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+      display: none;
+      position: relative;
     }
 
     .slide.active {
-      opacity: 1;
-      z-index: 1;
+      display: block;
     }
 
-    .overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+    .slide img {
       width: 100%;
-      background: linear-gradient(to right bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
-      clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 100%);
-      padding: 1rem 2rem;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
-    .overlay h2 {
-      margin-bottom: 0.5rem;
-      color: #FF5722;
+    .caption {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      width: 90%;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 1.5rem;
+      clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+      font-size: 1.2rem;
     }
 
-    .arrow {
+    .nav-buttons {
       position: absolute;
       top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
       transform: translateY(-50%);
-      background-color: rgba(255, 255, 255, 0.7);
+      padding: 0 1rem;
+    }
+
+    .nav-buttons button {
+      background-color: rgba(0,0,0,0.4);
       border: none;
-      padding: 0.8rem 1.2rem;
+      color: white;
       font-size: 2rem;
-      color: #333;
       cursor: pointer;
-      z-index: 2;
-      border-radius: 50%;
-      transition: background-color 0.3s ease;
+      padding: 0.5rem 1rem;
+      transition: background 0.3s;
     }
 
-    .arrow:hover {
-      background-color: rgba(255, 255, 255, 1);
+    .nav-buttons button:hover {
+      background-color: rgba(0,0,0,0.7);
     }
 
-    .arrow.prev { left: 20px; }
-    .arrow.next { right: 20px; }
-
-    @media screen and (max-width: 768px) {
-      .overlay {
-        font-size: 0.9rem;
+    @media (max-width: 768px) {
+      .caption {
+        font-size: 1rem;
+        padding: 1rem;
+        clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
       }
-      .arrow {
-        font-size: 1.5rem;
-        padding: 0.6rem 1rem;
+
+      .slide img {
+        object-fit: contain;
+        height: auto;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="fot.png" alt="Logo Samorządu" class="logo" />
   </header>
 
   <div class="slider">
-    <div class="slide active" style="background-image: url('1.jpg');">
-      <div class="overlay">
-        <h2>Listopad</h2>
-        <p>24 radnych, w tym 17 nowo wybranych, złożyło ślubowanie przed Panią Dyrektor. Po jej krótkim przemówieniu odbyła się uroczysta, inauguracyjna sesja samorządu, podczas której wybraliśmy nowe władze i omówiliśmy kluczowe sprawy dotyczące szkoły.</p>
-      </div>
+    <div class="slide active">
+      <img src="slide1.jpg" alt="Slajd 1">
+      <div class="caption">To był rok pełen sukcesów i wspólnej pracy samorządu!</div>
     </div>
-    <div class="slide" style="background-image: url('slide2.jpg');">
-      <div class="overlay">
-        <h2>Grudzień</h2>
-        <p>Mikołajki – świąteczna atmosfera, odwiedziny w szkole i przedszkolu.</p>
-      </div>
+    <div class="slide">
+      <img src="slide2.jpg" alt="Slajd 2">
+      <div class="caption">Organizowaliśmy wydarzenia, wspieraliśmy inicjatywy uczniów.</div>
     </div>
-    <div class="slide" style="background-image: url('slide3.jpg');">
-      <div class="overlay">
-        <h2>Styczeń</h2>
-        <p>Szkolenie z Rzecznikiem Praw Ucznia – edukacja i rozwój kompetencji.</p>
-      </div>
+    <div class="slide">
+      <img src="slide3.jpg" alt="Slajd 3">
+      <div class="caption">Dołącz do nas i twórz szkolną rzeczywistość razem z nami!</div>
     </div>
-    <button class="arrow prev">&#10094;</button>
-    <button class="arrow next">&#10095;</button>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">❮</button>
+      <button onclick="nextSlide()">❯</button>
+    </div>
   </div>
 
   <footer>
@@ -143,20 +143,13 @@
   </footer>
 
   <script>
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
     let currentSlide = 0;
-    let slideInterval = setInterval(nextSlide, 4000);
+    const slides = document.querySelectorAll('.slide');
 
     function showSlide(index) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[index].classList.add('active');
-    }
-
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
     }
 
     function prevSlide() {
@@ -164,19 +157,9 @@
       showSlide(currentSlide);
     }
 
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      resetInterval();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      prevSlide();
-      resetInterval();
-    });
-
-    function resetInterval() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 4000);
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
     }
   </script>
 </body>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slajdy ze zdjęciami</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+
+    .section {
+      border: 2px solid black;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .section h1, .section h2 {
+      margin: 0;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      overflow: hidden;
+      height: 500px;
+      border: 2px solid black;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 40px;
+      box-sizing: border-box;
+      clip-path: polygon(0 0, 85% 0, 70% 100%, 0% 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .overlay h3 {
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+
+    .overlay p {
+      font-size: 1.1rem;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: white;
+      border: 2px solid black;
+      padding: 10px;
+      cursor: pointer;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .nav-arrow.left {
+      left: 10px;
+    }
+
+    .nav-arrow.right {
+      right: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        width: 100%;
+        height: 40%;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 80%);
+        bottom: 0;
+        top: auto;
+      }
+
+      .overlay h3 {
+        font-size: 1.4rem;
+      }
+
+      .overlay p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logo -->
+<div class="section">
+  <h1>logo</h1>
+</div>
+
+<!-- Podziękowania -->
+<div class="section">
+  <h2>podziękowania</h2>
+  <div style="border-top: 3px dotted black; width: 90%; margin: 10px auto;"></div>
+  <div style="border-top: 3px dotted black; width: 90%; margin: 10px auto;"></div>
+</div>
+
+<!-- Tytuł -->
+<div class="section">
+  <h2>to przeżyliśmy razem...</h2>
+</div>
+
+<!-- Slajdy -->
+<div class="slider-wrapper">
+  <div class="nav-arrow left" onclick="prevSlide()">&#10094;</div>
+  <div class="nav-arrow right" onclick="nextSlide()">&#10095;</div>
+
+  <div class="slides" id="slides">
+    <!-- SLIDE 1 -->
+    <div class="slide" style="background-image: url('1.jpg');">
+      <div class="overlay">
+        <h3>Listopad – Zaprzysiężenie</h3>
+        <p>24 radnych, w tym 17 nowych, złożyło ślubowanie. Inauguracja pełna emocji i planów!</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide" style="background-image: url('miko.jpg');">
+      <div class="overlay">
+        <h3>Grudzień – Mikołajki</h3>
+        <p>Odwiedziliśmy szkoły i klasy, rozdawaliśmy słodkości – uśmiechy gwarantowane!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+
+  function updateSlide() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  }
+</script>
+
+</body>
+</html>

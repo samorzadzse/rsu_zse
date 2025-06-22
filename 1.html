@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samorząd ZSE</title>
+  <style>
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body, html {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* usunięto align-items: center z body */
+    background-image: url('szka.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #333;
+    overflow-x: hidden;
+  }
+  header, footer {
+    background: linear-gradient(to right, #003366, #0055a5);
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  header img {
+    height: 50px;
+    display: block;
+    max-width: 100%;
+  }
+  main {
+    max-width: 1000px;
+    width: 100%;
+    margin: 2rem auto;
+    background: rgba(255,255,255,0.85);
+    padding: 1rem 2rem 2rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .intro {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 900px;
+  }
+  .events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+  }
+  .event {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .event img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+  }
+  .month {
+    font-weight: bold;
+    color: #0073e6;
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
+  }
+  h3 {
+    margin-bottom: 0.5rem;
+    color: #0055a5;
+  }
+  p {
+    text-align: justify;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+  footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+  .join-us {
+    background: #0055a5;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 85, 165, 0.7);
+    margin-bottom: 2rem;
+    max-width: 900px;
+    width: 100%;
+  }
+  .join-us h2 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+  .join-us button {
+    background: white;
+    color: #0055a5;
+    font-weight: 600;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .join-us button:hover {
+    background: #003366;
+    color: white;
+  }
+  @media screen and (max-width: 768px) {
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    main, .join-us, .events {
+      max-width: 100% !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+    .events {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    .event {
+      padding: 1rem 0.5rem !important;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+</style>
+
+
+</head>
+<body>
+
+<header>
+  <img src="fot1.png" alt="Logo Samorządu ZSE" />
+</header>
+
+<main>
+  <section class="intro">
+    <p>Był to wyjątkowo udany rok dla naszego samorządu. Nowi radni wnieśli świeżość i energię, dzięki czemu niemal co miesiąc organizowaliśmy wydarzenia, które urozmaicały szkolną codzienność. Za kulisami działo się jeszcze więcej – pracowaliśmy nad zmianami w regulaminie, dbaliśmy o Wasze prawa i wspieraliśmy uczniowskie inicjatywy. Możemy być dumni, że aż dwóch naszych radnych pełniło ważne funkcje: jeden jako szkolny Rzecznik Praw Ucznia, a drugi jako przedstawiciel w zespole parlamentarnym. To był rok pełen pracy, pomysłów i sukcesów – dziękujemy, że byliście z nami!
+</p>
+  </section>
+
+  <section class="events">
+
+    <div class="event">
+      <img src="1.jpg" alt="Zaprzysiężenie" />
+      <div class="month">LISTOPAD</div>
+      <h3>Zaprzysiężenie</h3>
+      <p>24 radnych, w tym 17 nowo wybranych, złożyło ślubowanie przed Panią Dyrektor. Po jej krótkim przemówieniu odbyła się uroczysta, inauguracyjna sesja samorządu, podczas której wybraliśmy nowe władze i omówiliśmy kluczowe sprawy dotyczące szkoły.</p>
+    </div>
+
+    <div class="event">
+      <img src="86e09e6d-7ba2-4357-a041-dde837461b20.jpg" alt="Mikołajki" />
+      <div class="month">GRUDZIEŃ</div>
+      <h3>Mikołajki</h3>
+      <p>W mikołajkowym orszaku wspólnie z Radą Roziców oraz z Drużyną Anonimowych Aktorów, odwiedziliśmy SP nr 69 oraz Przedszkole nr 33, niosąc radość najmłodszym. O 11:30 rozpoczęliśmy świąteczne obchody w naszej szkole, a godzinę później wręczyliśmy nagrody w turnieju Rummikuba. Mikołaj odwiedził klasy i nagrodził najbardziej kreatywnych – wszystko dzięki wsparciu Rady Rodziców. To był magiczny dzień!</p>
+    </div>
+
+    <div class="event">
+      <img src="rada-samorzadu-uczniowskiego-na-warsztatach-588480.jpg" alt="Szkolenie" />
+      <div class="month">STYCZEŃ</div>
+      <h3>Szkolenie z Panią Rzecznik</h3>
+      <p>Gościliśmy Panią Katarzynę Gębę – Rzecznika Praw Ucznia w Gdańsku. Uczestniczyliśmy w warsztatach, które pozwoliły nam rozwinąć kompetencje i pogłębić wiedzę o roli samorządu w szkole. Spotkanie było niezwykle inspirujące!</p>
+    </div>
+
+    <div class="event">
+      <img src="zmiana-we-wladzach-rsu-589946.jpg" alt="Nowy przewodniczący 1" />
+      <img src="zmiana-we-wladzach-rsu-589947.jpg" alt="Nowy przewodniczący 2" />
+      <div class="month">STYCZEŃ</div>
+      <h3>Nowy przewodniczący</h3>
+      <p>Podczas 3. sesji Rady Samorządu Uczniowskiego podziękowaliśmy Sarze Zaskórskiej z klasy 5P za jej zaangażowanie i lata pracy jako Przewodnicząca. Nowym przewodniczącym został Bartosz Zabrocki z klasy 3F.</p>
+    </div>
+
+    <div class="event">
+      <img src="walentynki-593028.jpg" alt="Kino i dyskoteka" />
+      <div class="month">LUTY</div>
+      <h3>Kino i dyskoteka</h3>
+      <p>W tym roku walentynki były wyjątkowe! Rano, wspólnie z SDKF-em, zaprosiliśmy Was na seanse filmowe, a wieczorem bawiliśmy się przy hitach lat 90. i 2000. Było romantycznie, filmowo i tanecznie!</p>
+    </div>
+
+    <div class="event">
+      <img src="1ee53576-fe97-4df2-9660-ff5b5f2b7632.jpg" alt="Dni Otwarte" />
+      <div class="month">KWIECIEŃ</div>
+      <h3>Dni Otwarte</h3>
+      <p>Z radością gościliśmy ósmoklasistów, którym pokazaliśmy każdy zakamarek naszej szkoły. Odpowiadaliśmy na pytania, dzieliliśmy się ciekawostkami i opowiadaliśmy o naszych pasjach oraz kółkach zainteresowań. Atmosfera była inspirująca i bardzo pozytywna!
+</p>
+    </div>
+
+    <div class="event">
+      <img src="kon.jpg" alt="Konferencja" />
+      <div class="month">KWIECIEŃ</div>
+      <h3>Konferencja</h3>
+      <p>Członkowie prezydium SU uczestniczyli w konferencji „Nasze Sprawy – Społecznicy” w ECS. Braliśmy udział w warsztatach, panelach dyskusyjnych i spotkaniach z ekspertami. To była cenna okazja do zdobycia wiedzy i inspiracji!
+</p>
+    </div>
+
+    <div class="event">
+      <img src="438a6b71-bf02-4593-93f5-50bbf6919d78.jpg" alt="ziemia" />
+      <div class="month">KWIECIEŃ</div>
+      <h3>Dzień Ziemi</h3>
+      <p>Wspólnie posprzątaliśmy szkolne podwórko i usunęliśmy wszystkie chwasty. Choć było to męczące, efekt końcowy naprawdę cieszy oko!</p>
+    </div>
+
+    <div class="event">
+      <img src="dziec.jpg" alt="dzieci" />
+      <div class="month">MAJ</div>
+      <h3>Dzień Dziecka</h3>
+      <p>30 maja w auli Zespołu Szkół Energetycznych odbył się wyjątkowy koncert, który zorganizowaliśmy z okazji Dnia Dziecka. Na scenie zadebiutował zespół SPECIAL, złożony głównie z uczniów klasy 2K. Było głośno, energetycznie i rockowo! Dziękujemy za talent, odwagę i muzyczne emocje – czekamy na więcej!</p>
+    </div>
+    
+    <div class="join-us">
+    <h2>Masz pomysł? Chcesz działać? Zmieniaj szkołę razem z nami!</h2>
+    <button>Zgłoś się</button>
+    </div>
+
+  
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Samorząd Uczniowski ZSE
+</footer>
+
+</body>
+</html>

@@ -101,6 +101,42 @@
     .countdown-text span {
       display: inline-block;
     }
+
+    .events {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 900px;
+    }
+    .event {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .event img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
+    }
+    .month {
+      font-weight: bold;
+      color: #0073e6;
+      margin-bottom: 0.3rem;
+      font-size: 0.85rem;
+    }
+    h3 {
+      margin-bottom: 0.5rem;
+      color: #0055a5;
+    }
+    p {
+      text-align: justify;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      max-width: 100%;
+    }
     footer {
       margin-top: 2rem;
       padding: 1rem 0;
@@ -108,14 +144,22 @@
       text-align: center;
       width: 100%;
     }
+
     @media screen and (max-width: 768px) {
-      main {
-        max-width: 100%;
-        padding-left: 1rem;
-        padding-right: 1rem;
+      main, .events {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
       }
-      h1 {
-        font-size: 1rem;
+      .events {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .event {
+        padding: 1rem 0.5rem !important;
+      }
+      p {
+        text-align: justify;
       }
     }
   </style>
@@ -128,7 +172,7 @@
 
 <main>
   <section class="intro">
-    <h1>Okres wyborczy rozpocznie się xx września 2025 r.</h1>
+    <h1>Okres wyborczy rozpocznie się 21 września 2025 r.</h1>
     <h1><b>Do rozpoczęcia okresu wyborczego, pozostało</b></h1>
     <br><br>
 
@@ -141,17 +185,17 @@
       <div class="countdown-text" id="countdown">Ładowanie...</div>
     </div>
   </section>
-</main>
- <section class="events">
 
+  <section class="events">
     <div class="event">
       <img src="1k.jpg" alt="podawanie kandydatur" />
-      <div class="month">XX wrzesień - XX październik</div>
+      <div class="month">WRZESIEŃ - PAŹDZIERNIK</div>
       <h3>Składanie kandydatur</h3>
-      <p>Tu będzie PDF z formularzem i listą poparcia do wydrukowania</p>
+      <p>Tu będzie PDF z formularzem i listą poparcia do wydrukowania.</p>
     </div>
-   
   </section>
+</main>
+
 <footer>
   &copy; 2025 Samorząd Uczniowski ZSE
 </footer>

@@ -153,44 +153,50 @@
       text-align: justify;
     }
   }
-    }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-        #countdown {
-            font-size: 2em;
-            color: #333;
-        }
-</style>
-
-
+  /* Styl okręgu i odliczania */
+  .circle-timer {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 2rem auto;
+  }
+  svg {
+    transform: rotate(-90deg);
+  }
+  circle {
+    fill: none;
+    stroke-width: 12;
+  }
+  .bg {
+    stroke: #eee;
+  }
+  .done {
+    stroke: blue;
+    stroke-dasharray: 785;
+    stroke-dashoffset: 785;
+    transition: stroke-dashoffset 1s linear;
+  }
+  .left {
+    stroke: red;
+    stroke-dasharray: 785;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+  }
+  .countdown-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    white-space: pre-line;
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+  </style>
 </head>
 <body>
-<script>
-        
-        const targetDate = new Date("2025-09-01T00:00:00").getTime();
 
-        const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const timeLeft = targetDate - now;
-
-            if (timeLeft <= 0) {
-                clearInterval(interval);
-                document.getElementById("countdown").innerHTML = "Czas minął!";
-                return;
-            }
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML =
-                `${days} dni, ${hours} godzin, ${minutes} minut, ${seconds} sekund`;
-        }, 1000);
-    </script>
-  
 <header>
   <img src="fot1.png" alt="Logo Samorządu ZSE" />
 </header>
@@ -198,83 +204,76 @@
 <main>
   <section class="intro">
     <h1>Do rozpoczęcia okresu wyborczego, pozostało</h1>
-    <div id="countdown"></div>
+
+    <div class="circle-timer">
+      <svg width="260" height="260" viewBox="0 0 260 260">
+        <circle class="bg" cx="130" cy="130" r="125"/>
+        <circle class="done" cx="130" cy="130" r="125"/>
+        <circle class="left" cx="130" cy="130" r="125"/>
+      </svg>
+      <div class="countdown-text" id="countdown">Ładowanie...</div>
+    </div>
   </section>
 
   <section class="events">
-
+    <!-- ... tutaj reszta Twoich wydarzeń ... -->
     <div class="event">
       <img src="1.jpg" alt="Zaprzysiężenie" />
       <div class="month">XX września - XX października 2025</div>
       <h3>Zgłaszanie kandydatury</h3>
       <p>Tu będzie PDF z formularzem oraz podpisami</p>
     </div>
-
-    <div class="event">
-      <img src="86e09e6d-7ba2-4357-a041-dde837461b20.jpg" alt="Mikołajki" />
-      <div class="month">XX października 2025</div>
-      <h3>Ogłoszenie kandydatów</h3>
-      <p>//////////</p>
-    </div>
-
-    <div class="event">
-      <img src="rada-samorzadu-uczniowskiego-na-warsztatach-588480.jpg" alt="Szkolenie" />
-      <div class="month">XX październik - XX października 2025</div>
-      <h3>Kampania wyborcza</h3>
-      <p>//////////</p>
-    </div>
-
-    <div class="event">
-      <img src="zmiana-we-wladzach-rsu-589946.jpg" alt="Nowy przewodniczący 1" />
-      <img src="zmiana-we-wladzach-rsu-589947.jpg" alt="Nowy przewodniczący 2" />
-      <div class="month">XX październik</div>
-      <h3>Wybory</h3>
-      <p>Podczas 3. sesji Rady Samorządu Uczniowskiego podziękowaliśmy Sarze Zaskórskiej z klasy 5P za jej zaangażowanie i lata pracy jako Przewodnicząca. Nowym przewodniczącym został Bartosz Zabrocki z klasy 3F.</p>
-    </div>
-
-    <div class="event">
-      <img src="walentynki-593028.jpg" alt="Kino i dyskoteka" />
-      <div class="month">LUTY</div>
-      <h3>Kino i dyskoteka</h3>
-      <p>W tym roku walentynki były wyjątkowe! Rano, wspólnie z SDKF-em, zaprosiliśmy Was na seanse filmowe, a wieczorem bawiliśmy się przy hitach lat 90. i 2000. Było romantycznie, filmowo i tanecznie!</p>
-    </div>
-
-    <div class="event">
-      <img src="1ee53576-fe97-4df2-9660-ff5b5f2b7632.jpg" alt="Dni Otwarte" />
-      <div class="month">KWIECIEŃ</div>
-      <h3>Dni Otwarte</h3>
-      <p>Z radością gościliśmy ósmoklasistów, którym pokazaliśmy każdy zakamarek naszej szkoły. Odpowiadaliśmy na pytania, dzieliliśmy się ciekawostkami i opowiadaliśmy o naszych pasjach oraz kółkach zainteresowań. Atmosfera była inspirująca i bardzo pozytywna!
-</p>
-    </div>
-
-    <div class="event">
-      <img src="kon.jpg" alt="Konferencja" />
-      <div class="month">KWIECIEŃ</div>
-      <h3>Konferencja</h3>
-      <p>Członkowie prezydium SU uczestniczyli w konferencji „Nasze Sprawy – Społecznicy” w ECS. Braliśmy udział w warsztatach, panelach dyskusyjnych i spotkaniach z ekspertami. To była cenna okazja do zdobycia wiedzy i inspiracji!
-</p>
-    </div>
-
-    <div class="event">
-      <img src="438a6b71-bf02-4593-93f5-50bbf6919d78.jpg" alt="ziemia" />
-      <div class="month">KWIECIEŃ</div>
-      <h3>Dzień Ziemi</h3>
-      <p>Wspólnie posprzątaliśmy szkolne podwórko i usunęliśmy wszystkie chwasty. Choć było to męczące, efekt końcowy naprawdę cieszy oko!</p>
-    </div>
-
-    <div class="event">
-      <img src="dziec.jpg" alt="dzieci" />
-      <div class="month">MAJ</div>
-      <h3>Dzień Dziecka</h3>
-      <p>30 maja w auli Zespołu Szkół Energetycznych odbył się wyjątkowy koncert, który zorganizowaliśmy z okazji Dnia Dziecka. Na scenie zadebiutował zespół SPECIAL, złożony głównie z uczniów klasy 2K. Było głośno, energetycznie i rockowo! Dziękujemy za talent, odwagę i muzyczne emocje – czekamy na więcej!</p>
-    </div>
-  
+    <!-- reszta eventów kopiuj jak masz -->
   </section>
 </main>
 
 <footer>
   &copy; 2025 Samorząd Uczniowski ZSE
 </footer>
+
+<script>
+  const targetDate = new Date("2025-09-01T00:00:00").getTime();
+  const startDate = Date.now();
+  const circumference = 2 * Math.PI * 125; // r=125
+
+  const doneCircle = document.querySelector('.done');
+  const leftCircle = document.querySelector('.left');
+  const countdownText = document.getElementById('countdown');
+
+  doneCircle.style.strokeDasharray = circumference;
+  leftCircle.style.strokeDasharray = circumference;
+
+  function updateCountdown() {
+    const now = Date.now();
+    const timeLeft = targetDate - now;
+
+    if (timeLeft <= 0) {
+      countdownText.textContent = "Czas minął!";
+      doneCircle.style.strokeDashoffset = 0;
+      leftCircle.style.strokeDashoffset = circumference;
+      clearInterval(interval);
+      return;
+    }
+
+    // Obliczenia dni, godzin, minut, sekund
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+    countdownText.textContent = `${days}d\n${hours}h\n${minutes}m\n${seconds}s`;
+
+    // Progres od startu do celu
+    const progress = (now - startDate) / (targetDate - startDate);
+    // Niebieski (done) - ile minęło
+    doneCircle.style.strokeDashoffset = circumference * (1 - progress);
+    // Czerwony (left) - ile zostało, tutaj offset ujemny dla efektu drugiego łuku
+    leftCircle.style.strokeDashoffset = circumference * (-progress);
+  }
+
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
 
 </body>
 </html>

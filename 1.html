@@ -153,18 +153,52 @@
       text-align: justify;
     }
   }
+    }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        #countdown {
+            font-size: 2em;
+            color: #333;
+        }
 </style>
 
 
 </head>
 <body>
+<script>
+        
+        const targetDate = new Date("2026-01-01T00:00:00").getTime();
 
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerHTML = "Czas minął!";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `${days} dni, ${hours} godzin, ${minutes} minut, ${seconds} sekund`;
+        }, 1000);
+    </script>
+  
 <header>
   <img src="fot1.png" alt="Logo Samorządu ZSE" />
 </header>
 
 <main>
   <section class="intro">
+    <h1>Odliczanie do Nowego Roku 2026</h1>
+    <div id="countdown"></div>
     <p>Był to wyjątkowo udany rok dla naszego samorządu. Nowi radni wnieśli świeżość i energię, dzięki czemu niemal co miesiąc organizowaliśmy wydarzenia, które urozmaicały szkolną codzienność. Za kulisami działo się jeszcze więcej – pracowaliśmy nad zmianami w regulaminie, dbaliśmy o Wasze prawa i wspieraliśmy uczniowskie inicjatywy. Możemy być dumni, że aż dwóch naszych radnych pełniło ważne funkcje: jeden jako szkolny Rzecznik Praw Ucznia, a drugi jako przedstawiciel w zespole parlamentarnym. To był rok pełen pracy, pomysłów i sukcesów – dziękujemy, że byliście z nami!
 </p>
   </section>

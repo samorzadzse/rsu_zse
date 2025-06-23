@@ -283,15 +283,15 @@
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-    countdownText.textContent = `${days}d\n${hours}h\n${minutes}m\n${seconds}s`;
+    countdownText.innerHTML = `
+      <span>${days}d</span>
+      <span>${hours}h</span>
+      <span>${minutes}m</span>
+      <span>${seconds}s</span>
+    `;
 
-    // Progres od startu do celu (0..1)
     const progress = (now - startDate) / (targetDate - startDate);
-
-    // Niebieski - ile minęło
     doneCircle.style.strokeDashoffset = circumference * (1 - progress);
-
-    // Czerwony - ile zostało
     leftCircle.style.strokeDashoffset = circumference * progress;
   }
 

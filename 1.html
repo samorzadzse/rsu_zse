@@ -156,12 +156,16 @@
   /* Styl okręgu i odliczania */
   .circle-timer {
     position: relative;
-    width: 260px;
-    height: 260px;
+    width: 220px;
+    height: 220px;
     margin: 0 auto 2rem auto;
+    padding: 10px;
   }
   svg {
+    width: 100%;
+    height: 100%;
     transform: rotate(-90deg);
+    overflow: visible;
   }
   circle {
     fill: none;
@@ -172,13 +176,13 @@
   }
   .done {
     stroke: blue;
-    stroke-dasharray: 785;
-    stroke-dashoffset: 785;
+    stroke-dasharray: 659.73; /* 2 * PI * 105 */
+    stroke-dashoffset: 659.73;
     transition: stroke-dashoffset 1s linear;
   }
   .left {
     stroke: red;
-    stroke-dasharray: 785;
+    stroke-dasharray: 659.73;
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 1s linear;
   }
@@ -206,10 +210,10 @@
     <h1>Do rozpoczęcia okresu wyborczego, pozostało</h1>
 
     <div class="circle-timer">
-      <svg width="260" height="260" viewBox="0 0 260 260">
-        <circle class="bg" cx="130" cy="130" r="125"/>
-        <circle class="done" cx="130" cy="130" r="125"/>
-        <circle class="left" cx="130" cy="130" r="125"/>
+      <svg viewBox="0 0 220 220" width="220" height="220">
+        <circle class="bg" cx="110" cy="110" r="105"/>
+        <circle class="done" cx="110" cy="110" r="105"/>
+        <circle class="left" cx="110" cy="110" r="105"/>
       </svg>
       <div class="countdown-text" id="countdown">Ładowanie...</div>
     </div>
@@ -234,7 +238,9 @@
 <script>
   const targetDate = new Date("2025-09-01T00:00:00").getTime();
   const startDate = Date.now();
-  const circumference = 2 * Math.PI * 125; // r=125
+
+  const radius = 105;
+  const circumference = 2 * Math.PI * radius;
 
   const doneCircle = document.querySelector('.done');
   const leftCircle = document.querySelector('.left');
@@ -255,7 +261,6 @@
       return;
     }
 
-    // Obliczenia dni, godzin, minut, sekund
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -263,12 +268,14 @@
 
     countdownText.textContent = `${days}d\n${hours}h\n${minutes}m\n${seconds}s`;
 
-    // Progres od startu do celu
+    // Progres od startu do celu (0..1)
     const progress = (now - startDate) / (targetDate - startDate);
-    // Niebieski (done) - ile minęło
+
+    // Niebieski - ile minęło
     doneCircle.style.strokeDashoffset = circumference * (1 - progress);
-    // Czerwony (left) - ile zostało, tutaj offset ujemny dla efektu drugiego łuku
-    leftCircle.style.strokeDashoffset = circumference * (-progress);
+
+    // Czerwony - ile zostało
+    leftCircle.style.strokeDashoffset = circumference * progress;
   }
 
   const interval = setInterval(updateCountdown, 1000);

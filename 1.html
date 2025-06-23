@@ -5,199 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Samorząd ZSE</title>
   <style>
-  * {
-    box-sizing: border-box;
-    margin: 0; padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  body, html {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    /* usunięto align-items: center z body */
-    background-image: url('szka.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    color: #333;
-    overflow-x: hidden;
-  }
-  header, footer {
-    background: linear-gradient(to right, #003366, #0055a5);
-    color: white;
-    padding: 1rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  header img {
-    height: 50px;
-    display: block;
-    max-width: 100%;
-  }
-  main {
-    max-width: 1000px;
-    width: 100%;
-    margin: 2rem auto;
-    background: rgba(255,255,255,0.85);
-    padding: 1rem 2rem 2rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .intro {
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    line-height: 1.5;
-    text-align: center;
-    max-width: 900px;
-  }
-  .events {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 900px;
-  }
-  .event {
-    background: white;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  .event img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 0.8rem;
-  }
-  .month {
-    font-weight: bold;
-    color: #0073e6;
-    margin-bottom: 0.3rem;
-    font-size: 0.85rem;
-  }
-  h3 {
-    margin-bottom: 0.5rem;
-    color: #0055a5;
-  }
-  p {
-    text-align: justify;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    max-width: 100%;
-  }
-  footer {
-    margin-top: 2rem;
-    padding: 1rem 0;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-  }
-  .join-us {
-    background: #0055a5;
-    color: white;
-    text-align: center;
-    padding: 2rem 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0, 85, 165, 0.7);
-    margin-bottom: 2rem;
-    max-width: 900px;
-    width: 100%;
-  }
-  .join-us h2 {
-    margin-bottom: 1rem;
-    font-weight: 700;
-    font-size: 1.6rem;
-  }
-  .join-us button {
-    background: white;
-    color: #0055a5;
-    font-weight: 600;
-    border: none;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  .join-us button:hover {
-    background: #003366;
-    color: white;
-  }
-  @media screen and (max-width: 768px) {
-    body, html {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    main, .join-us, .events {
-      max-width: 100% !important;
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
+    body, html {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: url('szka.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      color: #333;
+      overflow-x: hidden;
     }
-    .events {
-      grid-template-columns: 1fr !important;
-      gap: 1rem !important;
+    header, footer {
+      background: linear-gradient(to right, #003366, #0055a5);
+      color: white;
+      padding: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .event {
-      padding: 1rem 0.5rem !important;
+    header img {
+      height: 50px;
+      display: block;
+      max-width: 100%;
     }
-    p {
-      text-align: justify;
+    main {
+      max-width: 1000px;
+      width: 100%;
+      margin: 2rem auto;
+      background: rgba(255,255,255,0.85);
+      padding: 1rem 2rem 2rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-  }
-  /* Styl okręgu i odliczania */
-  .circle-timer {
-    position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 2rem auto;
-    padding: 10px;
-  }
-  svg {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-    overflow: visible;
-  }
-  circle {
-    fill: none;
-    stroke-width: 12;
-  }
-  .bg {
-    stroke: #eee;
-  }
-  .done {
-    stroke: blue;
-    stroke-dasharray: 659.73; /* 2 * PI * 105 */
-    stroke-dashoffset: 659.73;
-    transition: stroke-dashoffset 1s linear;
-  }
-  .left {
-    stroke: red;
-    stroke-dasharray: 659.73;
-    stroke-dashoffset: 0;
-    transition: stroke-dashoffset 1s linear;
-  }
-  .countdown-text {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #333;
-    white-space: pre-line;
-    font-size: 1rem;
-    line-height: 1.2;
-  }
-    h1 {
+    .intro {
+      margin-bottom: 2rem;
       font-size: 1.1rem;
+      line-height: 1.5;
+      text-align: center;
+      max-width: 900px;
+    }
+    .circle-timer {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 2rem auto;
+      padding: 10px;
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    circle {
+      fill: none;
+      stroke-width: 12;
+    }
+    .bg {
+      stroke: #eee;
+    }
+    .done {
+      stroke: blue;
+      stroke-dasharray: 659.73;
+      stroke-dashoffset: 659.73;
+      transition: stroke-dashoffset 1s linear;
+    }
+    .left {
+      stroke: red;
+      stroke-dasharray: 659.73;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+    }
+    .countdown-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .countdown-text span {
+      display: inline-block;
+    }
+    footer {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+    }
+    @media screen and (max-width: 768px) {
+      main {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
     }
   </style>
 </head>
@@ -211,7 +127,6 @@
   <section class="intro">
     <h1>Okres wyborczy rozpocznie się 21 września 2025 r.</h1>
     <h1><b>Do rozpoczęcia okresu wyborczego, pozostało</b></h1>
-    <br><br>
 
     <div class="circle-timer">
       <svg viewBox="0 0 220 220" width="220" height="220">
@@ -221,30 +136,6 @@
       </svg>
       <div class="countdown-text" id="countdown">Ładowanie...</div>
     </div>
-  </section>
-<!--
-  <section class="events">
-     <div class="event">
-      <img src="1.jpg" alt="Zaprzysiężenie" />
-      <div class="month">XX września - XX października 2025</div>
-      <h3>Zgłaszanie kandydatury</h3>
-      <p>Tu będzie PDF z formularzem oraz podpisami</p>
-    </div>
-
-    <div class="event">
-      <img src="86e09e6d-7ba2-4357-a041-dde837461b20.jpg" alt="Mikołajki" />
-      <div class="month">XX października 2025</div>
-      <h3>Ogłoszenie kandydatów</h3>
-      <p>//////////</p>
-    </div>
-
-    <div class="event">
-      <img src="rada-samorzadu-uczniowskiego-na-warsztatach-588480.jpg" alt="Szkolenie" />
-      <div class="month">XX październik - XX października 2025</div>
-      <h3>Kampania wyborcza</h3>
-      <p>//////////</p>
-    </div>
--->
   </section>
 </main>
 

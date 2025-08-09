@@ -101,7 +101,6 @@
     .countdown-text span {
       display: inline-block;
     }
-
     .events {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
@@ -144,7 +143,6 @@
       text-align: center;
       width: 100%;
     }
-
     @media screen and (max-width: 768px) {
       main, .events {
         max-width: 100% !important;
@@ -165,17 +163,14 @@
   </style>
 </head>
 <body>
-
 <header>
   <img src="fot1.png" alt="Logo Samorządu ZSE" />
 </header>
-
 <main>
   <section class="intro">
     <h1>Okres wyborczy rozpocznie się 21 września 2025 r.</h1>
     <h1><b>Do rozpoczęcia okresu wyborczego, pozostało</b></h1>
     <br><br>
-
     <div class="circle-timer">
       <svg viewBox="0 0 220 220" width="220" height="220">
         <circle class="bg" cx="110" cy="110" r="105"/>
@@ -185,37 +180,31 @@
       <div class="countdown-text" id="countdown">Ładowanie...</div>
     </div>
   </section>
-
   <section class="events">
-
     <div class="event">
       <img src="1k.jpg" alt="podawanie kandydatur" />
       <div class="month">XX WRZESIEŃ - XX PAŹDZIERNIK</div>
       <h3>Składanie kandydatur</h3>
       <p>Tu będzie PDF z formularzem i listą poparcia do wydrukowania.</p>
     </div>
-
     <div class="event">
       <img src="1k.jpg" alt="lista" />
       <div class="month">XX PAŹDZIERNIK</div>
       <h3>Lista zarejestrowanych kandydatów</h3>
       <p>Tu będzie lista kandydatów.</p>
     </div>
-
     <div class="event">
       <img src="2k.jpg" alt="kampania" />
       <div class="month">XX - YY PAŹDZIERNIK</div>
       <h3>Kampania wyborcza</h3>
       <p>Tu będzie wzór plakatu itp.</p>
     </div>
-
     <div class="event">
       <img src="3k.jpg" alt="wybory" />
       <div class="month">XX PAŹDZIERNIK</div>
       <h3>Wybory</h3>
       <p>Tu będzie PDF z formularzem i listą poparcia do wydrukowania.</p>
     </div>
-
     <div class="event">
       <img src="1k.jpg" alt="wyniki" />
       <div class="month">XX LISTOPAD</div>
@@ -224,14 +213,14 @@
     </div>
   </section>
 </main>
-
 <footer>
   &copy; 2025 Samorząd Uczniowski ZSE
 </footer>
 
 <script>
+  // Data startu i końca okresu
+  const startDate = new Date("2025-06-01T00:00:00").getTime();
   const targetDate = new Date("2025-09-21T00:00:00").getTime();
-  const startDate = Date.now();
 
   const radius = 105;
   const circumference = 2 * Math.PI * radius;
@@ -246,7 +235,17 @@
   function updateCountdown() {
     const now = Date.now();
     const timeLeft = targetDate - now;
+    const totalTime = targetDate - startDate;
+    const elapsed = now - startDate;
 
+    // Zabezpieczenia
+    if (elapsed <= 0) {
+      // Jeszcze nie zaczął się okres odliczania
+      countdownText.textContent = "Czekamy na początek odliczania...";
+      doneCircle.style.strokeDashoffset = circumference;
+      leftCircle.style.strokeDashoffset = 0;
+      return;
+    }
     if (timeLeft <= 0) {
       countdownText.textContent = "Czas minął!";
       doneCircle.style.strokeDashoffset = 0;
@@ -255,11 +254,11 @@
       return;
     }
 
+    // Tekst licznika
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
     countdownText.innerHTML = `
       <span>${days}d</span>
       <span>${hours}h</span>
@@ -267,7 +266,8 @@
       <span>${seconds}s</span>
     `;
 
-    const progress = (now - startDate) / (targetDate - startDate);
+    // Progres w ułamku (0–1)
+    const progress = elapsed / totalTime;
     doneCircle.style.strokeDashoffset = circumference * (1 - progress);
     leftCircle.style.strokeDashoffset = circumference * progress;
   }
@@ -275,6 +275,5 @@
   const interval = setInterval(updateCountdown, 1000);
   updateCountdown();
 </script>
-
 </body>
 </html>

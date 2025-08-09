@@ -75,16 +75,10 @@
     .bg {
       stroke: #eee;
     }
-    .done {
+    .progress {
       stroke: blue;
       stroke-dasharray: 659.73;
       stroke-dashoffset: 659.73;
-      transition: stroke-dashoffset 1s linear;
-    }
-    .left {
-      stroke: red;
-      stroke-dasharray: 659.73;
-      stroke-dashoffset: 0;
       transition: stroke-dashoffset 1s linear;
     }
     .countdown-text {
@@ -174,8 +168,7 @@
     <div class="circle-timer">
       <svg viewBox="0 0 220 220" width="220" height="220">
         <circle class="bg" cx="110" cy="110" r="105"/>
-        <circle class="done" cx="110" cy="110" r="105"/>
-        <circle class="left" cx="110" cy="110" r="105"/>
+        <circle class="progress" cx="110" cy="110" r="105"/>
       </svg>
       <div class="countdown-text" id="countdown">Ładowanie...</div>
     </div>
@@ -218,43 +211,35 @@
 </footer>
 
 <script>
-  // Data startu i końca okresu
   const startDate = new Date("2025-01-01T00:00:00").getTime();
   const targetDate = new Date("2025-09-21T00:00:00").getTime();
 
   const radius = 105;
   const circumference = 2 * Math.PI * radius;
 
-  const doneCircle = document.querySelector('.done');
-  const leftCircle = document.querySelector('.left');
+  const progressCircle = document.querySelector('.progress');
   const countdownText = document.getElementById('countdown');
 
-  doneCircle.style.strokeDasharray = circumference;
-  leftCircle.style.strokeDasharray = circumference;
+  progressCircle.style.strokeDasharray = circumference;
 
   function updateCountdown() {
     const now = Date.now();
-    const timeLeft = targetDate - now;
     const totalTime = targetDate - startDate;
     const elapsed = now - startDate;
+    const timeLeft = targetDate - now;
 
-    // Zabezpieczenia
     if (elapsed <= 0) {
-      // Jeszcze nie zaczął się okres odliczania
       countdownText.textContent = "Czekamy na początek odliczania...";
-      doneCircle.style.strokeDashoffset = circumference;
-      leftCircle.style.strokeDashoffset = 0;
+      progressCircle.style.strokeDashoffset = circumference;
       return;
     }
     if (timeLeft <= 0) {
       countdownText.textContent = "Czas minął!";
-      doneCircle.style.strokeDashoffset = 0;
-      leftCircle.style.strokeDashoffset = circumference;
+      progressCircle.style.strokeDashoffset = 0;
       clearInterval(interval);
       return;
     }
 
-    // Tekst licznika
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -266,10 +251,8 @@
       <span>${seconds}s</span>
     `;
 
-    // Progres w ułamku (0–1)
-    const progress = elapsed / totalTime;
-    doneCircle.style.strokeDashoffset = circumference * (1 - progress);
-    leftCircle.style.strokeDashoffset = circumference * progress;
+    const progress = Math.min(Math.max(elapsed / totalTime, 0), 1);
+    progressCircle.style.strokeDashoffset = circumference * (1 - progress);
   }
 
   const interval = setInterval(updateCountdown, 1000);
